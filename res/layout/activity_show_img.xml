@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_above="@+id/toolbar_area"
+        android:id="@+id/drawing_view_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <jp.co.cyberagent.android.gpuimage.GPUImageView
+            android:id="@+id/img"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/toolbar_area"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical" >
+
+        <it.sephiroth.android.library.widget.HListView
+            android:id="@+id/list_tools"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/common_background"
+            android:gravity="center_vertical"
+            android:overScrollMode="always"
+            app:hlv_dividerWidth="15px" />
+    </LinearLayout>
+</RelativeLayout>
