@@ -5,8 +5,8 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="22" />
 
-    <application android:allowBackup="true"  >
-        <activity android:name="me.nereo.multi_image_selector.ShowImageActivity" />
+    <application >
+        <activity android:name="com.hck.yanghua.biaoqian.ShowImageActivity" />
     </application>
 
 </manifest>

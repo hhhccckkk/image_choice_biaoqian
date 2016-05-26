@@ -2,108 +2,77 @@ package com.hck.yanghua.biaoqian;
 
 import android.app.Application;
 import android.util.DisplayMetrics;
-
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.utils.StorageUtils;
+import android.util.Log;
 
 /**
  * Created by sky on 2015/7/6.
  */
 public class App extends Application {
 
-    protected static App       mInstance;
-    private DisplayMetrics     displayMetrics = null;
-
-    public App(){
-        mInstance = this;
-    }
-
-    public static App getApp() {
-        if (mInstance != null && mInstance instanceof App) {
-            return (App) mInstance;
-        } else {
-            mInstance = new App();
-            mInstance.onCreate();
-            return (App) mInstance;
-        }
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        initImageLoader();
-        mInstance = this;
-    }
-
-
-    private void initImageLoader() {
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .cacheInMemory(false)
-                .imageScaleType(ImageScaleType.EXACTLY)
-                .cacheOnDisc(true)
-                .build();
-
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-                .threadPriority(Thread.NORM_PRIORITY - 2)
-                .defaultDisplayImageOptions(defaultOptions)
-                .denyCacheImageMultipleSizesInMemory()
-                .memoryCache(new LruMemoryCache(2 * 1024 * 1024)).memoryCacheSize(2 * 1024 * 1024)
-                .threadPoolSize(3)
-                .build();
-        ImageLoader.getInstance().init(config);
-    }
-
-
-    public float getScreenDensity() {
-        if (this.displayMetrics == null) {
-            setDisplayMetrics(getResources().getDisplayMetrics());
-        }
-        return this.displayMetrics.density;
-    }
-
-    public int getScreenHeight() {
-        if (this.displayMetrics == null) {
-            setDisplayMetrics(getResources().getDisplayMetrics());
-        }
-        return this.displayMetrics.heightPixels;
-    }
-
-    public int getScreenWidth() {
-        if (this.displayMetrics == null) {
-            setDisplayMetrics(getResources().getDisplayMetrics());
-        }
-        return this.displayMetrics.widthPixels;
-    }
-
-    public void setDisplayMetrics(DisplayMetrics DisplayMetrics) {
-        this.displayMetrics = DisplayMetrics;
-    }
-
-    public int dp2px(float f)
-    {
-        return (int)(0.5F + f * getScreenDensity());
-    }
-
-    public int px2dp(float pxValue) {
-        return (int) (pxValue / getScreenDensity() + 0.5f);
-    }
-
-    //获取应用的data/data/....File目录
-    public String getFilesDirPath() {
-        return getFilesDir().getAbsolutePath();
-    }
-
-    //获取应用的data/data/....Cache目录
-    public String getCacheDirPath() {
-        return getCacheDir().getAbsolutePath();
-    }
-
-
+//	protected static App mInstance;
+//	private DisplayMetrics displayMetrics = null;
+//
+//
+//	public static App getApp() {
+//		if (mInstance != null && mInstance instanceof App) {
+//			return (App) mInstance;
+//		} else {
+//			mInstance = new App();
+//			mInstance.onCreate();
+//			return (App) mInstance;
+//		}
+//	}
+//
+//	@Override
+//	public void onCreate() {
+//		
+//		super.onCreate();
+//		mInstance = this;
+//		Log.d("hck", "onCreateonCreateonCreate: "+mInstance);
+//
+//	}
+//
+//	public float getScreenDensity() {
+//		if (this.displayMetrics == null) {
+//			setDisplayMetrics(mInstance.getResources().getDisplayMetrics());
+//		}
+//		return this.displayMetrics.density;
+//	}
+//
+//	public int getScreenHeight() {
+//		if (this.displayMetrics == null) {
+//			setDisplayMetrics(mInstance.getResources().getDisplayMetrics());
+//		}
+//		return this.displayMetrics.heightPixels;
+//	}
+//
+//	public int getScreenWidth() {
+//		if (this.displayMetrics == null) {
+//			setDisplayMetrics(mInstance.getResources().getDisplayMetrics());
+//		}
+//		return this.displayMetrics.widthPixels;
+//	}
+//
+//	public void setDisplayMetrics(DisplayMetrics DisplayMetrics) {
+//		this.displayMetrics = DisplayMetrics;
+//	}
+//
+//	public int dp2px(float f) {
+//		return (int) (0.5F + f * mInstance.getScreenDensity());
+//	}
+//
+//	public int px2dp(float pxValue) {
+//		return (int) (pxValue / mInstance.getScreenDensity() + 0.5f);
+//	}
+//
+//	// 获取应用的data/data/....File目录
+//	public String getFilesDirPath() {
+//		return getFilesDir().getAbsolutePath();
+//	}
+//
+//	// 获取应用的data/data/....Cache目录
+//	public String getCacheDirPath() {
+//		return getCacheDir().getAbsolutePath();
+//	}
 
 }

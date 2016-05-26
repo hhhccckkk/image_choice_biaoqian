@@ -96,7 +96,7 @@ public class MyHighlightView implements EditableDrawable.OnSizeChange {
     public void setScaleable(boolean scaleable) {
         this.mScaleEnabled = scaleable;
         if (scaleable) {
-            mAnchorRotate = App.getApp().getResources().getDrawable(R.drawable.aviary_resize_knob);
+            mAnchorRotate = Utils.getResources().getDrawable(R.drawable.aviary_resize_knob);
         } else {
             mAnchorRotate = null;
         }
@@ -104,7 +104,7 @@ public class MyHighlightView implements EditableDrawable.OnSizeChange {
 
     public void setDeleteable(boolean deleteable) {
         if (deleteable) {
-            mAnchorDelete = App.getApp().getResources().getDrawable(R.drawable.aviary_delete_knob);
+            mAnchorDelete =  Utils.getResources().getDrawable(R.drawable.aviary_delete_knob);
         } else {
             mAnchorDelete = null;
         }
@@ -127,8 +127,8 @@ public class MyHighlightView implements EditableDrawable.OnSizeChange {
         mRotateEnabled = true;
         mScaleEnabled = true;
 
-        mAnchorRotate = App.getApp().getResources().getDrawable(R.drawable.aviary_resize_knob);
-        mAnchorDelete = App.getApp().getResources().getDrawable(R.drawable.aviary_delete_knob);
+        mAnchorRotate =  Utils.getResources().getDrawable(R.drawable.aviary_resize_knob);
+        mAnchorDelete =  Utils.getResources().getDrawable(R.drawable.aviary_delete_knob);
 
         if (null != mAnchorRotate) {
             mAnchorRotateWidth = mAnchorRotate.getIntrinsicWidth() / 2;
@@ -202,7 +202,7 @@ public class MyHighlightView implements EditableDrawable.OnSizeChange {
                 outlinePath.reset();
                 outlinePath.addRect(mTempRect, Path.Direction.CW);
                 outlinePaint.setColor(Color.WHITE);
-                outlinePaint.setStrokeWidth(App.getApp().dp2px(1));
+                outlinePaint.setStrokeWidth( Utils.dp2px(1));
                 canvas.drawPath(outlinePath, outlinePaint);
 
                 final int left = (int) (mTempRect.left);

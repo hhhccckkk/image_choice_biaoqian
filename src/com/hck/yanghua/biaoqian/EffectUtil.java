@@ -161,14 +161,14 @@ public class EffectUtil {
 	}
 
 	public static int getStandDis(float realDis, float baseWidth) {
-		float imageWidth = baseWidth <= 0 ? App.getApp().getScreenWidth()
+		float imageWidth = baseWidth <= 0 ? Utils.getScreenWidth()
 				: baseWidth;
 		float radio = AppConstants.DEFAULT_PIXEL / imageWidth;
 		return (int) (radio * realDis);
 	}
 
 	public static int getRealDis(float standardDis, float baseWidth) {
-		float imageWidth = baseWidth <= 0 ? App.getApp().getScreenWidth()
+		float imageWidth = baseWidth <= 0 ? Utils.getScreenWidth()
 				: baseWidth;
 		float radio = imageWidth / AppConstants.DEFAULT_PIXEL;
 		return (int) (radio * standardDis);

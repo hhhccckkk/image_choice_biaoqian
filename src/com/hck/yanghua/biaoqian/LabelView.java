@@ -70,7 +70,7 @@ public class LabelView extends LinearLayout {
         this.parentWidth = parent.getWidth();
         this.parentHeight = parent.getHeight();
         if (parentWidth <= 0) {
-            parentWidth = App.getApp().getScreenWidth();
+            parentWidth =Utils.getScreenWidth();
         }
         setImageWidth((int) parentWidth);
         setImgeHeight((int)this.parentHeight);
@@ -101,7 +101,7 @@ public class LabelView extends LinearLayout {
         }
         this.parentWidth = parent.getWidth();
         if (parentWidth <= 0) {
-            parentWidth = App.getApp().getScreenWidth();
+            parentWidth = Utils.getScreenWidth();
         }
         setImageWidth((int) parentWidth);
         setImgeHeight((int)this.parentHeight);
@@ -168,14 +168,14 @@ public class LabelView extends LinearLayout {
 	   this.imageHeight = Height;
    }
    private int getImageHeight(){
-	   return imageHeight <= 0 ? App.getApp().getScreenHeight() : imageHeight;
+	   return imageHeight <= 0 ? Utils.getScreenHeight() : imageHeight;
    }
     private void setImageWidth(int width) {
         this.imageWidth = width;
     }
 
     private int getImageWidth() {
-        return imageWidth <= 0 ? App.getApp().getScreenWidth() : imageWidth;
+        return imageWidth <= 0 ?Utils.getScreenWidth() : imageWidth;
     }
 
     private int left = -1, top = -1;
