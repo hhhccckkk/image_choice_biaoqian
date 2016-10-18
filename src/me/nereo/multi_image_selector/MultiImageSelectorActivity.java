@@ -12,7 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.hck.yanghua.biaoqian.ShowImageActivity;
+import com.hck.yanghua.biaoqian.HandleImageActivity;
+import com.hck.yanghua.biaoqian.ImageData;
 import com.hck.yanghua.biaoqian.Utils;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -45,10 +46,12 @@ public class MultiImageSelectorActivity extends FragmentActivity implements
 	private ArrayList<String> resultList = new ArrayList<String>();
 	private Button mSubmitButton;
 	private int mDefaultCount;
+	public static MultiImageSelectorActivity activity;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		activity = this;
 		setContentView(R.layout.activity_default);
 		Utils.init(this);
 		initImageLoader();
@@ -111,17 +114,30 @@ public class MultiImageSelectorActivity extends FragmentActivity implements
 		});
 	}
 
+	public void sendImge() {
+		if (ImageData.imagePath != null) {
+			Log.d("hck", "onDestroy>>>>>>>>>>>>>>>>>>>>>>>>onDestroy"
+					+ ImageData.imagePath);
+			Intent data = new Intent();
+			data.putExtra("img", ImageData.imagePath);
+			setResult(2, data);
+			ImageData.imagePath = null;
+			finish();
+		}
+	}
+
+	@Override
+	protected void onDestroy() {
+
+		super.onDestroy();
+
+	}
+
 	@Override
 	public void onSingleImageSelected(String path) {
-		// Intent data = new Intent();
-		// resultList.add(path);
-		// data.putStringArrayListExtra(EXTRA_RESULT, resultList);
-		// setResult(RESULT_OK, data);
-		// finish();
-		Log.d("hck", "onSingleImageSelectedonSingleImageSelected");
 		Intent intent = new Intent();
 		intent.putExtra("img", path);
-		intent.setClass(this, ShowImageActivity.class);
+		intent.setClass(this, HandleImageActivity.class);
 		startActivity(intent);
 	}
 
@@ -183,4 +199,5 @@ public class MultiImageSelectorActivity extends FragmentActivity implements
 				.memoryCacheSize(2 * 1024 * 1024).threadPoolSize(3).build();
 		ImageLoader.getInstance().init(config);
 	}
+
 }

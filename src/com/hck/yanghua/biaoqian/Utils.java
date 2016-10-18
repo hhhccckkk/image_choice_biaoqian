@@ -2,14 +2,21 @@ package com.hck.yanghua.biaoqian;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.util.DisplayMetrics;
 
 public class Utils {
 	private static DisplayMetrics displayMetrics = null;
 	private static Context context;
-    public static void init(Context context){
-    	Utils.context=context;
-    }
+
+	public static void init(Context context) {
+		Utils.context = context;
+	}
+
 	public static float getScreenDensity() {
 		if (displayMetrics == null) {
 			setDisplayMetrics(context.getResources().getDisplayMetrics());
@@ -52,9 +59,25 @@ public class Utils {
 	public static String getCacheDirPath() {
 		return context.getCacheDir().getAbsolutePath();
 	}
+
 	public static Resources getResources() {
-		
+
 		return context.getResources();
+	}
+
+	public static Bitmap onCompositeImages(Bitmap bitmap, Bitmap bitmap2) {
+		Bitmap bmp = null;
+
+		bmp = Bitmap.createBitmap(bitmap2.getWidth(), bitmap2.getHeight(),
+				bitmap2.getConfig());
+		final Paint paint = new Paint();
+		final Canvas canvas = new Canvas(bmp);
+		canvas.drawBitmap(bitmap2, 0, 0, paint);
+
+		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+		canvas.drawBitmap(bitmap, 0, 0, paint);
+
+		return bmp;
 	}
 
 }
